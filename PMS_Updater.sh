@@ -6,7 +6,12 @@ VERBOSE=1
 REMOVE=1
 LOGGING=1
 
-PLEXTOKEN="$(sed -n 's/.*PlexOnlineToken="//p' /Plex\ Media\ Server/Preferences.xml | sed 's/\".*//')"
+#default location for pms plugin, for manual jail install try
+#PREFS="/usr/local/plexdata-plexpass/Plex Media Server/Preferences.xml"
+
+PREFS="/Plex Media Server/Preferences.xml"
+
+PLEXTOKEN="$(sed -n 's/.*PlexOnlineToken="//p' "${PREFS}" | sed 's/\".*//')"
 BASEURL="https://plex.tv/api/downloads/5.json"
 TOKENURL="$BASEURL?channel=plexpass&X-Plex-Token=$PLEXTOKEN"
 DOWNLOADPATH="/tmp"
